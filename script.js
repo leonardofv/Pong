@@ -1,8 +1,23 @@
 let tela = document.querySelector(".tela");
 let pincel = tela.getContext('2d');
 
+//canvas
 pincel.fillStyle = 'black';
 pincel.fillRect(0,0,600,400);
+
+//Raquete
+function desenhaRaquete() {
+
+    pincel.fillStyle = 'white';
+    pincel.fillRect(10, 150, 15, 110);
+    
+}
+
+//Parei aqui
+function movimentaRaquete(event) {
+
+    console.log(event);
+}
 
 function desenhaBolinha(x, y, raio, cor) {
 
@@ -19,6 +34,7 @@ function limpaTela() {
 
 }
 
+//Variáveis da bolinha
 let x = 300;
 let y = 200;
 let sentidoX = 5;
@@ -39,10 +55,12 @@ function atualizaTela() {
     desenhaBolinha(x, y, 10, 'white');
     x+=sentidoX;
     y+=sentidoY;
+    desenhaRaquete();
 
 }
 
-setInterval(atualizaTela, 5);
+setInterval(atualizaTela, 11);
+let uo = tela.keycode();
 
 
 
