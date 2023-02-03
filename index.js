@@ -4,9 +4,9 @@ let pincel = tela.getContext('2d');
 pincel.fillStyle = 'black';
 pincel.fillRect(0,0,600,400);
 
-function desenhaBolinha(x,y,raio) {
+function desenhaBolinha(x,y,raio, cor) {
 
-    pincel.fillStyle = 'blue';
+    pincel.fillStyle = cor;
     pincel.beginPath();
     pincel.arc(x, y, raio, 0, 2 * Math.PI);
     pincel.fill();
@@ -36,7 +36,7 @@ function atualizaTela() {
     }if(y <= 5) {
         sentidoY = 5;
     }
-    desenhaBolinha(x,y,10);
+    desenhaBolinha(x, y, 10, 'white');
     x+=sentidoX;
     y+=sentidoY;
 
