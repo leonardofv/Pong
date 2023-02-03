@@ -19,17 +19,31 @@ function limpaTela() {
 
 }
 
-let x = 20;
+let x = 300;
+let y = 200;
+let sentidoX = 5;
+let sentidoY = 5;
 
 function atualizaTela() {
 
     limpaTela();
-    desenhaBolinha(x,200,10);
-    x++;
+    if(x >= 600) {    //verifica colisao com a borda
+        sentidoX = -5;
+    }if(x <= 0) {
+        sentidoX = 5;
+    }if(y >= 400) {
+        sentidoY -= 5;
+    }if(y <= 5) {
+        sentidoY = 5;
+    }
+    desenhaBolinha(x,y,10);
+    x+=sentidoX;
+    y+=sentidoY;
 
 }
 
 setInterval(atualizaTela, 5);
+
 
 
 
