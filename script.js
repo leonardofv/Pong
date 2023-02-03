@@ -4,7 +4,7 @@ let pincel = tela.getContext('2d');
 pincel.fillStyle = 'black';
 pincel.fillRect(0,0,600,400);
 
-function desenhaBolinha(x,y,raio, cor) {
+function desenhaBolinha(x, y, raio, cor) {
 
     pincel.fillStyle = cor;
     pincel.beginPath();
