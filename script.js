@@ -6,26 +6,13 @@ pincel.fillStyle = 'black';
 pincel.fillRect(0,0,600,400);
 
 //Raquete
-function desenhaRaquete() {
+let xRaquete = 10;
+let yRaquete = 150;
+
+function desenhaRaquete(xRaquete, yRaquete) {
 
     pincel.fillStyle = 'white';
-    pincel.fillRect(10, 150, 15, 110);
-    
-}
-
-//Parei aqui
-function movimentaRaquete(event) {
-
-    console.log(event);
-}
-
-function desenhaBolinha(x, y, raio, cor) {
-
-    pincel.fillStyle = cor;
-    pincel.beginPath();
-    pincel.arc(x, y, raio, 0, 2 * Math.PI);
-    pincel.fill();
-
+    pincel.fillRect(xRaquete, yRaquete, 15, 110);
 }
 
 function limpaTela() {
@@ -40,6 +27,15 @@ let y = 200;
 let sentidoX = 5;
 let sentidoY = 5;
 
+function desenhaBolinha(x, y, raio, cor) {
+
+    pincel.fillStyle = cor;
+    pincel.beginPath();
+    pincel.arc(x, y, raio, 0, 2 * Math.PI);
+    pincel.fill();
+
+}
+
 function atualizaTela() {
 
     limpaTela();
@@ -52,16 +48,30 @@ function atualizaTela() {
     }if(y <= 5) {
         sentidoY = 5;
     }
+
     desenhaBolinha(x, y, 10, 'white');
     x+=sentidoX;
     y+=sentidoY;
-    desenhaRaquete();
+
+    desenhaRaquete(xRaquete, yRaquete);
 
 }
 
 setInterval(atualizaTela, 11);
-let uo = tela.keycode();
 
+//movimentação da Raquete
+let cima = 38; 
+let baixo = 40;
+function movimentaRaquete(event) {
+
+    if(event.keyCode == cima) {  
+        yRaquete-=30;
+    }else if(event.keyCode == baixo) {
+        yRaquete+=30;
+    }
+}
+
+document.onkeydown = movimentaRaquete;
 
 
 
