@@ -8,11 +8,13 @@ pincel.fillRect(0,0,600,400);
 //Raquete
 let xRaquete = 10;
 let yRaquete = 150;
+let larguraRaquete = 15;
+let alturaRaquete = 110;
 
 function desenhaRaquete(xRaquete, yRaquete) {
 
     pincel.fillStyle = 'white';
-    pincel.fillRect(xRaquete, yRaquete, 15, 110);
+    pincel.fillRect(xRaquete, yRaquete, larguraRaquete ,alturaRaquete);
 }
 
 function limpaTela() {
@@ -37,15 +39,30 @@ function desenhaBolinha(x, y, raioBolinha, cor) {
 
 }
 
-function atualizaTela() {
+function colisaoComBorda() {
 
-    limpaTela();
     if(xBolinha + raioBolinha >= 600 || xBolinha - raioBolinha < 0) {    //verifica colisao com a borda
         sentidoX *= -1;
     }if(yBolinha + raioBolinha >= 400 || yBolinha - raioBolinha <= 0) {
         sentidoY *= -1;
     }
+}
 
+function colisaoRaquete() {
+
+    if(xBolinha - raioBolinha < xRaquete + larguraRaquete 
+        && yBolinha - raioBolinha < yRaquete + alturaRaquete 
+        && yBolinha + raioBolinha > yRaquete) {
+        sentidoX *= -1;
+    }
+
+}
+
+function atualizaTela() {
+
+    limpaTela();
+    colisaoComBorda();
+    colisaoRaquete();
     desenhaBolinha(xBolinha, yBolinha, raioBolinha, 'white');
     xBolinha+=sentidoX;
     yBolinha+=sentidoY;
@@ -54,7 +71,7 @@ function atualizaTela() {
 
 }
 
-setInterval(atualizaTela, 300);
+setInterval(atualizaTela, 20);
 
 //movimentação da Raquete
 let cima = 38; 
