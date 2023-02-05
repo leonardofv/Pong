@@ -64,9 +64,9 @@ let cima = 38;
 let baixo = 40;
 function movimentaRaquete(event) {
 
-    if(event.keyCode == cima) {  
+    if(event.keyCode == cima && yRaquete > 0) {  
         yRaquete-=30;
-    }else if(event.keyCode == baixo) {
+    }else if(event.keyCode == baixo && yRaquete < 300) {
         yRaquete+=30;
     }
 }
