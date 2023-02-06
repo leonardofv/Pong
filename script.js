@@ -117,9 +117,28 @@ function atualizaTela() {
     raqueteOponente(xRaqueteOponente, yRaqueteOponente);
     colisaoRaqueteOponente();
     movimentaRaqueteOponente();
-
+    mostraPlacar();
+    
+ 
 }
 
 setInterval(atualizaTela, 20);
 
 document.onkeydown = movimentaRaquete;
+
+//placar
+let meusPontos = 0;
+let pontosOponente = 0;
+
+function mostraPlacar(pontos, posicaoX, posicaoY) {
+
+    pincel.font = '40px serif';
+    pincel.fillText(meusPontos, 150, 40);
+    pincel.fillText(pontosOponente, 450, 40);
+
+    if(xBolinha < xRaquete) {
+        pontosOponente+=1;
+    }
+
+}
+
