@@ -23,6 +23,29 @@ function desenhaRaquete(xRaquete, yRaquete) {
     pincel.fillRect(xRaquete, yRaquete, larguraRaquete ,alturaRaquete);
 }
 
+//Variáveis das setas
+let cima = 38; 
+let baixo = 40;
+
+function movimentaRaquete(event) {
+
+    if(event.keyCode == cima && yRaquete > 0) {  
+        yRaquete-=30;
+    }else if(event.keyCode == baixo && yRaquete < 300) {
+        yRaquete+=30;
+    }
+}
+
+function colisaoRaquete() {
+    //Obs: esse trecho deu dor de cabeça.
+    if(xBolinha - raioBolinha < xRaquete + larguraRaquete 
+        && yBolinha - raioBolinha < yRaquete + alturaRaquete 
+        && yBolinha + raioBolinha > yRaquete) {
+        sentidoX *= -1;
+    }
+
+}
+
 //Raquete do Oponente
 let xRaqueteOponente = 575;
 let yRaqueteOponente = 150;
@@ -34,6 +57,12 @@ function raqueteOponente(xRaqueteOponente, yRaqueteOponente) {
 
     pincel.fillStyle = 'white';
     pincel.fillRect(xRaqueteOponente, yRaqueteOponente, larguraRaqueteOponente, alturaRaqueteOponente);
+}
+
+function movimentaRaqueteOponente() {
+    //Obs: Deu mais dor de cabeça ainda
+    movimentacaoOponente = yBolinha - yRaqueteOponente - larguraRaqueteOponente;
+    yRaqueteOponente += movimentacaoOponente - 30;
 }
 
 //Variáveis da bolinha
@@ -61,16 +90,6 @@ function colisaoComBorda() {
     }
 }
 
-function colisaoRaquete() {
-    //Obs: esse trecho deu dor de cabeça.
-    if(xBolinha - raioBolinha < xRaquete + larguraRaquete 
-        && yBolinha - raioBolinha < yRaquete + alturaRaquete 
-        && yBolinha + raioBolinha > yRaquete) {
-        sentidoX *= -1;
-    }
-
-}
-
 function atualizaTela() {
 
     limpaTela();
@@ -87,25 +106,5 @@ function atualizaTela() {
 }
 
 setInterval(atualizaTela, 20);
-
-//Variáveis das setas
-let cima = 38; 
-let baixo = 40;
-
-function movimentaRaquete(event) {
-
-    if(event.keyCode == cima && yRaquete > 0) {  
-        yRaquete-=30;
-    }else if(event.keyCode == baixo && yRaquete < 300) {
-        yRaquete+=30;
-    }
-}
-
-function movimentaRaqueteOponente() {
-    //Obs: Deu mais dor de cabeça ainda
-    movimentacaoOponente = yBolinha - yRaqueteOponente - larguraRaqueteOponente;
-    yRaqueteOponente += movimentacaoOponente - 30;
-}
-
 
 document.onkeydown = movimentaRaquete;
