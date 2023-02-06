@@ -65,6 +65,15 @@ function movimentaRaqueteOponente() {
     yRaqueteOponente += movimentacaoOponente - 30;
 }
 
+function colisaoRaqueteOponente() {
+
+    if(xBolinha + raioBolinha > xRaqueteOponente
+        && yBolinha - raioBolinha < yRaqueteOponente + alturaRaqueteOponente
+        && yBolinha + raioBolinha > yRaqueteOponente) {
+            sentidoX *= -1;
+        }
+}
+
 //Variáveis da bolinha
 let xBolinha = 300;
 let yBolinha = 200;
@@ -95,6 +104,7 @@ function atualizaTela() {
     limpaTela();
     colisaoComBorda();
     colisaoRaquete();
+    colisaoRaqueteOponente();
     desenhaBolinha(xBolinha, yBolinha, raioBolinha, 'white');
     xBolinha+=sentidoX;
     yBolinha+=sentidoY;
