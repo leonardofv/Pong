@@ -90,6 +90,13 @@ function desenhaBolinha(x, y, raioBolinha, cor) {
 
 }
 
+function movimentaBolinha() {
+
+    xBolinha+=sentidoX;
+    yBolinha+=sentidoY;
+
+}
+
 function colisaoComBorda() {
 
     if(xBolinha + raioBolinha >= 600 || xBolinha - raioBolinha < 0) {
@@ -102,15 +109,13 @@ function colisaoComBorda() {
 function atualizaTela() {
 
     limpaTela();
-    colisaoComBorda();
-    colisaoRaquete();
-    colisaoRaqueteOponente();
     desenhaBolinha(xBolinha, yBolinha, raioBolinha, 'white');
-    xBolinha+=sentidoX;
-    yBolinha+=sentidoY;
-
+    movimentaBolinha();
+    colisaoComBorda();
     desenhaRaquete(xRaquete, yRaquete);
+    colisaoRaquete();
     raqueteOponente(xRaqueteOponente, yRaqueteOponente);
+    colisaoRaqueteOponente();
     movimentaRaqueteOponente();
 
 }
