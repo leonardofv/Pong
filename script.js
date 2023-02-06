@@ -14,8 +14,8 @@ function limpaTela() {
 //Raquete
 let xRaquete = 10;
 let yRaquete = 150;
-let larguraRaquete = 15;
-let alturaRaquete = 110;
+let larguraRaquete = 10;
+let alturaRaquete = 90;
 
 function desenhaRaquete(xRaquete, yRaquete) {
 
@@ -47,10 +47,10 @@ function colisaoRaquete() {
 }
 
 //Raquete do Oponente
-let xRaqueteOponente = 575;
+let xRaqueteOponente = 580;
 let yRaqueteOponente = 150;
-let larguraRaqueteOponente = 15;
-let alturaRaqueteOponente = 110;
+let larguraRaqueteOponente = 10;
+let alturaRaqueteOponente = 90;
 let movimentacaoOponente;
 
 function raqueteOponente(xRaqueteOponente, yRaqueteOponente) {
@@ -75,7 +75,7 @@ function colisaoRaqueteOponente() {
 }
 
 //Variáveis da bolinha
-let xBolinha = 300;
+let xBolinha = 280;
 let yBolinha = 200;
 let sentidoX = 5;
 let sentidoY = 5;
@@ -116,8 +116,9 @@ function atualizaTela() {
     colisaoRaquete();
     raqueteOponente(xRaqueteOponente, yRaqueteOponente);
     colisaoRaqueteOponente();
-    movimentaRaqueteOponente();
+    //movimentaRaqueteOponente();
     mostraPlacar();
+    marcaPonto();
     
  
 }
@@ -136,9 +137,15 @@ function mostraPlacar(pontos, posicaoX, posicaoY) {
     pincel.fillText(meusPontos, 150, 40);
     pincel.fillText(pontosOponente, 450, 40);
 
-    if(xBolinha < xRaquete) {
-        pontosOponente+=1;
-    }
+}
 
+function marcaPonto() {
+
+    if(xBolinha > xRaqueteOponente) {
+        meusPontos+=1;
+    }
+    if(xBolinha < xRaquete) {
+        pontosOponente +=1;
+    }
 }
 
