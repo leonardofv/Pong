@@ -28,6 +28,7 @@ let xRaqueteOponente = 575;
 let yRaqueteOponente = 150;
 let larguraRaqueteOponente = 15;
 let alturaRaqueteOponente = 110;
+let movimentacaoOponente;
 
 function raqueteOponente(xRaqueteOponente, yRaqueteOponente) {
 
@@ -81,6 +82,7 @@ function atualizaTela() {
 
     desenhaRaquete(xRaquete, yRaquete);
     raqueteOponente(xRaqueteOponente, yRaqueteOponente);
+    movimentaRaqueteOponente();
 
 }
 
@@ -98,5 +100,12 @@ function movimentaRaquete(event) {
         yRaquete+=30;
     }
 }
+
+function movimentaRaqueteOponente() {
+    //Obs: Deu mais dor de cabeça ainda
+    movimentacaoOponente = yBolinha - yRaqueteOponente - larguraRaqueteOponente;
+    yRaqueteOponente += movimentacaoOponente - 30;
+}
+
 
 document.onkeydown = movimentaRaquete;
