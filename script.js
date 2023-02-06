@@ -5,6 +5,12 @@ let pincel = tela.getContext('2d');
 pincel.fillStyle = 'black';
 pincel.fillRect(0,0,600,400);
 
+function limpaTela() {
+
+    pincel.clearRect(0, 0, 600, 400);
+
+}
+
 //Raquete
 let xRaquete = 10;
 let yRaquete = 150;
@@ -17,10 +23,16 @@ function desenhaRaquete(xRaquete, yRaquete) {
     pincel.fillRect(xRaquete, yRaquete, larguraRaquete ,alturaRaquete);
 }
 
-function limpaTela() {
+//Raquete do Oponente
+let xRaqueteOponente = 575;
+let yRaqueteOponente = 150;
+let larguraRaqueteOponente = 15;
+let alturaRaqueteOponente = 110;
 
-    pincel.clearRect(0, 0, 600, 400);
+function raqueteOponente(xRaqueteOponente, yRaqueteOponente) {
 
+    pincel.fillStyle = 'white';
+    pincel.fillRect(xRaqueteOponente, yRaqueteOponente, larguraRaqueteOponente, alturaRaqueteOponente);
 }
 
 //Variáveis da bolinha
@@ -41,7 +53,7 @@ function desenhaBolinha(x, y, raioBolinha, cor) {
 
 function colisaoComBorda() {
 
-    if(xBolinha + raioBolinha >= 600 || xBolinha - raioBolinha < 0) {    //verifica colisao com a borda
+    if(xBolinha + raioBolinha >= 600 || xBolinha - raioBolinha < 0) {
         sentidoX *= -1;
     }if(yBolinha + raioBolinha >= 400 || yBolinha - raioBolinha <= 0) {
         sentidoY *= -1;
@@ -49,7 +61,7 @@ function colisaoComBorda() {
 }
 
 function colisaoRaquete() {
-
+    //Obs: esse trecho deu dor de cabeça.
     if(xBolinha - raioBolinha < xRaquete + larguraRaquete 
         && yBolinha - raioBolinha < yRaquete + alturaRaquete 
         && yBolinha + raioBolinha > yRaquete) {
@@ -68,14 +80,16 @@ function atualizaTela() {
     yBolinha+=sentidoY;
 
     desenhaRaquete(xRaquete, yRaquete);
+    raqueteOponente(xRaqueteOponente, yRaqueteOponente);
 
 }
 
 setInterval(atualizaTela, 20);
 
-//movimentação da Raquete
+//Variáveis das setas
 let cima = 38; 
 let baixo = 40;
+
 function movimentaRaquete(event) {
 
     if(event.keyCode == cima && yRaquete > 0) {  
