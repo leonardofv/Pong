@@ -131,9 +131,15 @@ document.onkeydown = movimentaRaquete;
 let meusPontos = 0;
 let pontosOponente = 0;
 
-function mostraPlacar(pontos, posicaoX, posicaoY) {
+function mostraPlacar() {
 
+    //borda
+    pincel.fillStyle = 'white';
+    pincel.fillRect(120, 7, 90, 40);
+    pincel.fillRect(420, 8, 90, 40);
+    //placar
     pincel.font = '40px serif';
+    pincel.fillStyle = 'black';
     pincel.fillText(meusPontos, 150, 40);
     pincel.fillText(pontosOponente, 450, 40);
 
@@ -148,4 +154,5 @@ function marcaPonto() {
         pontosOponente +=1;
     }
 }
+
 
