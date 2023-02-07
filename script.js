@@ -99,33 +99,23 @@ function movimentaBolinha() {
 
 function colisaoComBorda() {
 
-    if(xBolinha + raioBolinha >= 600 || xBolinha - raioBolinha < 0) {
+    const atingiuBordaOponente = xBolinha + raioBolinha >= 600;
+    const atingiuBordaJogador = xBolinha - raioBolinha < 0;
+    const atingiuBordaSuperior = yBolinha - raioBolinha <= 0;
+    const atingiuBordaInferior = yBolinha + raioBolinha >= 400;
+
+    if(atingiuBordaOponente || atingiuBordaJogador) {
         sentidoX *= -1;
-    }if(yBolinha + raioBolinha >= 400 || yBolinha - raioBolinha <= 0) {
+    }else if(atingiuBordaSuperior || atingiuBordaInferior) {
         sentidoY *= -1;
     }
+
+    if(atingiuBordaOponente) {
+        meusPontos+=1;
+    }else if(atingiuBordaJogador) {
+        pontosOponente +=1;
+    }
 }
-
-function atualizaTela() {
-
-    limpaTela();
-    desenhaBolinha(xBolinha, yBolinha, raioBolinha, 'white');
-    movimentaBolinha();
-    colisaoComBorda();
-    desenhaRaquete(xRaquete, yRaquete);
-    colisaoRaquete();
-    raqueteOponente(xRaqueteOponente, yRaqueteOponente);
-    colisaoRaqueteOponente();
-    //movimentaRaqueteOponente();
-    mostraPlacar();
-    marcaPonto();
-    
- 
-}
-
-setInterval(atualizaTela, 20);
-
-document.onkeydown = movimentaRaquete;
 
 //placar
 let meusPontos = 0;
@@ -145,14 +135,30 @@ function mostraPlacar() {
 
 }
 
-function marcaPonto() {
+function mostraPlacar02() {
 
-    if(xBolinha > 588) { //588 foi a posiçãoX que encontrei para não pontuar 3 pontos em uma só vez.
-        meusPontos+=1;
-    }
-    if(xBolinha < xRaquete) {
-        pontosOponente +=1;
-    }
+    pincel.fillStyle = 'white';
+    pincel.font = '42px Arial';
+    pincel.textAlign = "center";
+    pincel.fillText(`${meusPontos} X ${pontosOponente}`, tela.width / 2, tela.height - 360);
+
 }
 
+function atualizaTela() {
 
+    limpaTela();
+    desenhaBolinha(xBolinha, yBolinha, raioBolinha, 'white');
+    movimentaBolinha();
+    colisaoComBorda();
+    desenhaRaquete(xRaquete, yRaquete);
+    colisaoRaquete();
+    raqueteOponente(xRaqueteOponente, yRaqueteOponente);
+    colisaoRaqueteOponente();
+    movimentaRaqueteOponente();
+    mostraPlacar();
+ 
+}
+
+setInterval(atualizaTela, 20);
+
+document.onkeydown = movimentaRaquete;
