@@ -141,7 +141,7 @@ function mostraPlacar(pontos, posicaoX, posicaoY) {
 
 function marcaPonto() {
 
-    if(xBolinha > xRaqueteOponente) {
+    if(xBolinha > 588) { //588 foi a posiçãoX que encontrei para não pontuar 3 pontos em uma só vez.
         meusPontos+=1;
     }
     if(xBolinha < xRaquete) {
