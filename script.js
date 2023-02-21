@@ -24,16 +24,17 @@ function desenhaRaquete(xRaquete, yRaquete) {
 }
 
 //Variáveis das setas
-let cima = 38; 
-let baixo = 40;
+let w = 87; 
+let s = 83;
 
 function movimentaRaquete(event) {
 
-    if(event.keyCode == cima && yRaquete > 0) {  
+    if(event.keyCode == w && yRaquete > 0) {  
         yRaquete-=30;
-    }else if(event.keyCode == baixo && yRaquete < 300) {
+    }else if(event.keyCode == s && yRaquete < 300) {
         yRaquete+=30;
     }
+    console.log(event.keyCode);
 }
 
 function colisaoRaquete() {
