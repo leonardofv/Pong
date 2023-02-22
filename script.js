@@ -23,20 +23,6 @@ function desenhaRaquete(xRaquete, yRaquete) {
     pincel.fillRect(xRaquete, yRaquete, larguraRaquete ,alturaRaquete);
 }
 
-//Variáveis das setas
-let w = 87; 
-let s = 83;
-
-function movimentaRaquete(event) {
-
-    if(event.keyCode == w && yRaquete > 0) {  
-        yRaquete-=30;
-    }else if(event.keyCode == s && yRaquete < 300) {
-        yRaquete+=30;
-    }
-    console.log(event.keyCode);
-}
-
 function colisaoRaquete() {
     //Obs: esse trecho deu dor de cabeça.
     if(xBolinha - raioBolinha < xRaquete + larguraRaquete 
@@ -45,6 +31,25 @@ function colisaoRaquete() {
         sentidoX *= -1;
     }
 
+}
+
+//Variáveis das setas
+let w = 87; 
+let s = 83;
+let cima = 38;
+let baixo = 40;
+
+function movimentaRaquetes(event) {
+
+    if(event.keyCode == w && yRaquete > 0) {  
+        yRaquete-=30;
+    }else if(event.keyCode == s && yRaquete < 300) {
+        yRaquete+=30;
+    }else if(event.keyCode == cima && yRaqueteOponente > 0) {
+        yRaqueteOponente -=30;
+    }else if(event.keyCode == baixo && yRaqueteOponente < 300) {
+        yRaqueteOponente +=30;
+    }
 }
 
 //Raquete do Oponente
@@ -59,7 +64,7 @@ function raqueteOponente(xRaqueteOponente, yRaqueteOponente) {
     pincel.fillStyle = 'white';
     pincel.fillRect(xRaqueteOponente, yRaqueteOponente, larguraRaqueteOponente, alturaRaqueteOponente);
 }
-
+//função de movimentação não foi usada.
 function movimentaRaqueteOponente() {
     //Obs: Deu mais dor de cabeça ainda
     movimentacaoOponente = yBolinha - yRaqueteOponente - larguraRaqueteOponente;
@@ -155,11 +160,13 @@ function atualizaTela() {
     colisaoRaquete();
     raqueteOponente(xRaqueteOponente, yRaqueteOponente);
     colisaoRaqueteOponente();
-    movimentaRaqueteOponente();
+    //movimentaRaqueteOponente();
     mostraPlacar();
+    
+    
  
 }
 
 setInterval(atualizaTela, 20);
 
-document.onkeydown = movimentaRaquete;
+ document.onkeydown = movimentaRaquetes;
